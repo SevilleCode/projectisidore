@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_latestEntries" value="name:id;datatype:3,name:Source;datatype:253,name:URL;datatype:253,name:Category;datatype:252,name:Description;datatype:252,name:Posting;datatype:252" />
+	<infoitem key="UD_nav" value="name:Category;datatype:252" />
+</info>
