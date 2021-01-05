@@ -7,7 +7,7 @@ If the content in this demo of Project Isidore feels familiar, it's because I am
 
 Some tips and credits:
 
-<ul><li>If you download this to run on your own server, make sure you change the database connection options (found in Connections/data.php). The default values are blank.</li>
+<ul><li>If you download this to run on your own server, make sure you change the database connection options (found in Connections/myData.php). The default values are blank.</li>
 <li>The sample database is included as sources.sql. You can import this into your own database server.</li>
   <li>The text editor is CKEditor 4.</li>
   <li>The backend login script comes from <a href="zubrag.com" target="_blank">Zubrag.com</a>. It's an older site, but it has many interesting resources; I highly recommend looking into it.</li></ul>
