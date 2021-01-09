@@ -1,4 +1,4 @@
-<?php include('password_protect.php'); ?>
+
 <?php require_once('../Connections/myData.php'); ?>
 <script src="https://cdn.ckeditor.com/4.15.1/full-all/ckeditor.js"></script>
 <?php
@@ -35,6 +35,20 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+if ((isset($_GET['id'])) && ($_GET['id'] != "")) {
+  $deleteSQL = sprintf("DELETE FROM sources WHERE id=%s",
+                       GetSQLValueString($_GET['id'], "int"));
+
+  $Result1 = $myData->query($deleteSQL) or die($myData->error);
+
+  $deleteGoTo = "index.php";
+  if (isset($_SERVER['QUERY_STRING'])) {
+    $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
+    $deleteGoTo .= $_SERVER['QUERY_STRING'];
+  }
+  header(sprintf("Location: %s", $deleteGoTo));
+}
+
 $maxRows_latestEntries = 5;
 $pageNum_latestEntries = 0;
 if (isset($_GET['pageNum_latestEntries'])) {
@@ -64,7 +78,11 @@ $nav = $myData->query($query_nav) or die($myData->error);
 $row_nav = $nav->fetch_assoc();
 $totalRows_nav = $nav->num_rows;
 
-$query_entryList = "SELECT * FROM sources ORDER BY id DESC";
+$colname_entryList = "-1";
+if (isset($_GET['id'])) {
+  $colname_entryList = $_GET['id'];
+}
+$query_entryList = sprintf("SELECT * FROM sources WHERE id = %s ORDER BY id DESC", GetSQLValueString($colname_entryList, "int"));
 $entryList = $myData->query($query_entryList) or die($myData->error);
 $row_entryList = $entryList->fetch_assoc();
 $totalRows_entryList = $entryList->num_rows;
@@ -74,12 +92,12 @@ $totalRows_entryList = $entryList->num_rows;
        <h1 class="display-4">Project Isidore&nbsp;</h1>
        <p class="lead">Basic CMS Framework&nbsp;</p>
        <hr class="my-4">
-	<a href="insert.php">Add New Entry</a><br>
-  <?php do { ?>
-  <?php echo $row_entryList['id']; ?> <?php echo $row_entryList['Source']; ?> <a href="update.php?id=<?php echo $row_entryList['id']; ?>">Update Entry</a> <a href="delete.php?id=<?php echo $row_entryList['id']; ?>">Delete Entry</a><br>
-  <?php } while ($row_entryList = $entryList->fetch_assoc()); ?>
-      
-  </div>
+       <?php echo $row_entryList['id']; ?><br>
+       <?php echo $row_entryList['Source']; ?><br>
+       <?php echo $row_entryList['Posting']; ?><br>
+  <?php echo $row_entryList['URL']; ?> <br>
+  <?php echo $row_entryList['Category']; ?><br>
+  <?php echo $row_entryList['Description']; ?> </div>
   <div class="container">
 	  
 
