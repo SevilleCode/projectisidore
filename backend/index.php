@@ -74,7 +74,7 @@ $totalRows_entryList = $entryList->num_rows;
        <h1 class="display-4">Project Isidore&nbsp;</h1>
        <p class="lead">Basic CMS Framework&nbsp;</p>
        <hr class="my-4">
-	<a href="update_title.php">Chant Site Title</a>
+	<a href="update_title.php">Change Site Title</a>
 	<hr class="my-4">
 	<a href="insert.php">Add New Entry</a><br>
   <?php do { ?>
