@@ -1,0 +1,13 @@
+RewriteEngine on
+RewriteRule ^category/([A-Za-z0-9-]+)/?$ category.php?Category=$1 [NC]
+RewriteRule ^detail/([A-Za-z0-9-\s().&:%2C+%26',%3A"]+)/?$ detail.php?Source=$1 [NC]
+RewriteRule ^results/([A-Za-z0-9-\s().]+)/?$ result.php [NC]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+ErrorDocument 404 /projectisidore/404.php
